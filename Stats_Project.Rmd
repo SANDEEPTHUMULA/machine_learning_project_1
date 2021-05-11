@@ -1,0 +1,81 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(readr)
+nassCDS <- read_csv("C:/Users/mukes/Desktop/Assignments & Projects/Data sets/nassCDS.csv")
+```
+
+```{r}
+ggplot(nassCDS, aes(Airbag, Vehicle_Year, color = Vehicle_Year))+
+  geom_point(size=1)+
+  labs(title="Airbag Vs Year of manf. of Vehicle", 
+       caption = "Source: http://www.stat.colostate.edu/~meyer/airbags.htm\ ftp://ftp.nhtsa.dot.gov/nass/")
+```
+
+
+
+```{r}
+ggplot(nassCDS, aes(Seatbelt, Age_of_Occupant, color = Age_of_Occupant))+
+  geom_point()+
+  labs(title="Age of the Occupant Vs Seatbelt-Yes or NO", 
+       caption = "Source: http://www.stat.colostate.edu/~meyer/airbags.htm\ ftp://ftp.nhtsa.dot.gov/nass/")
+```
+
+
+```{r}
+ggplot(nassCDS, aes(Speed_Range, Inj_Severity,shape=Speed_Range))+
+  geom_point(size=3)+
+  labs(title="Speed Range Vs Injury Severity", 
+       caption = "Source: http://www.stat.colostate.edu/~meyer/airbags.htm\ ftp://ftp.nhtsa.dot.gov/nass/")
+```
+
+```{r}
+ggplot(nassCDS, aes(Occ_Role,Inj_Severity, size=Inj_Severity))+
+  geom_point()+
+  labs(title="Occupant Role Vs Injury Severity", 
+       caption = "Source: http://www.stat.colostate.edu/~meyer/airbags.htm\ ftp://ftp.nhtsa.dot.gov/nass/")
+```
+
+
+```{r}
+ggplot(nassCDS, aes(Airbag_Deploy, Inj_Severity, color=Year_of_Accident))+
+  geom_point(size=3)+
+  facet_wrap(~Year_of_Accident)+
+  labs(title="Injury Severity Vs Airbag Deployed condition", 
+       caption = "Source: http://www.stat.colostate.edu/~meyer/airbags.htm\ ftp://ftp.nhtsa.dot.gov/nass/")
+```
+
+
+```{r}
+ggplot(nassCDS, aes(Speed_Range, Airbag_Deploy, color=Airbag_Deploy ))+geom_point(size=2)+facet_grid(~Dead_Alive)+
+  labs(title="Speed Range Vs Airbag Deployed", 
+       caption = "Source: http://www.stat.colostate.edu/~meyer/airbags.htm\ ftp://ftp.nhtsa.dot.gov/nass/")
+```
+
+
+```{r}
+ggplot(nassCDS, aes(Dead_Alive, Inj_Severity, color=Airbag_Deploy ))+ geom_point(size=2)+facet_grid(~Airbag)+
+  labs(title="Speed Range Vs Injury Severity", 
+       caption = "Source: http://www.stat.colostate.edu/~meyer/airbags.htm\ ftp://ftp.nhtsa.dot.gov/nass/")
+
+```
+
+```{r}
+ggplot(nassCDS, aes(Speed_Range, Inj_Severity))+ geom_point()+facet_grid(Year_of_Accident ~ Dead_Alive)+
+  labs(title="Speed Range Vs Injury Severity", 
+       caption = "Source: http://www.stat.colostate.edu/~meyer/airbags.htm\ ftp://ftp.nhtsa.dot.gov/nass/")
+
+```
+
+
+```{r}
+
+```
+
+
+
+
