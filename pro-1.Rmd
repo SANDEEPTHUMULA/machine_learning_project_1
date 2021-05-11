@@ -1,0 +1,69 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+```
+ 
+
+```{r}
+library(readr)
+nassCDS <- read_csv("D:/DAB501-basic stats and exp data anal/Project-1/nassCDS.csv")
+View(nassCDS)
+```
+```{r}
+ggplot(nassCDS, aes(Airbag_Deploy, Inj_Severity, color=Year_of_Accident))+
+  geom_line(size=3)+
+  facet_wrap(~Year_of_Accident)+
+  labs(title="Injury Severity Vs Airbag Deployed condition", 
+       caption = "Source: http://www.stat.colostate.edu/~meyer/airbags.htm\ ftp://ftp.nhtsa.dot.gov/nass/")
+```
+When we perform analyses on this dataset, the results produced are: the accidents in which a fatality occurs,airbags are beneficial.The number of fatalities occured are more when airbags are deployed then compared to noDeploy and unavailable.
+In a severe accident,airbags can save lives.However,they are inherently dangerous and pose a risk to the occupant.Our analyses show that in lower-speed crashes,the occupant is significantly more likely to die with an airbag than without.
+This is what seems to be happening with airbags, they increase the probability of death rather than decreasing it.
+
+
+```{r}
+ggplot(nassCDS, aes(Inj_Severity,Dead_Alive, color=Airbag_Deploy ))+ geom_point(size=2)+facet_grid(~Airbag)+
+  labs(title=" Injury Severity vs Dead_Alive", 
+       caption = "Source: http://www.stat.colostate.edu/~meyer/airbags.htm\ ftp://ftp.nhtsa.dot.gov/nass/")
+
+```
+In this plot we compare fatality rates for occupants with severity of injuries when they are maximum to minimum, with and without the airbags.
+The presence of airbags does not effect the probability of death in a crash if the injury severity is high even they are deployed,and in some cases the airbags aren't deployed resulting in deaths of some of the occupants while few of them survived.
+In the other scenerio,where the airbags are unavailable the results are similar to those of  with airbags.
+
+```{r}
+ggplot(nassCDS, aes(Speed_Range, Inj_Severity))+ geom_point(size=2,color='midnightblue')+facet_grid(Airbag ~ Dead_Alive)+
+  labs(title="Speed Range Vs Injury Severity", 
+       caption = "Source: http://www.stat.colostate.edu/~meyer/airbags.htm\ ftp://ftp.nhtsa.dot.gov/nass/")
+
+```
+In this plot it is clear that there are atleast three variables that may cause risk of death. These are NoAirbag,Injury severity and the Speed Range. 
+
+
+```{r}
+ggplot(nassCDS)+geom_bar(aes(Inj_Severity),fill='magenta')
+```
+Based on analyses produced on this dataset, the results produced are the no.of people incapacitated during the crash are higher than compared to cases like possible injury and not incapacitated.The people who got killed in the crash are 1/4 th of people having possible injury, and where condition of patients is unknown is relatively low.
+
+```{r}
+ggplot(nassCDS)+geom_bar(aes(Sex),fill='sienna4')
+```
+
+The no of people who got into a  car crash are more in male's than in female's from the years 1997-2002.
+
+```{r}
+ggplot(nassCDS)+geom_bar(aes(Dead_Alive),fill="peachpuff4")
+```
+
+The no of people alive even after the car crash are very high compared to the dead,where the count is very less.
+
+
+```{r}
+ggplot(nassCDS)+geom_bar(aes(Speed_Range),fill='royalblue4')
+```
+
+From the entire random sample of crashes, the crashes are most likely to happen at estimated impact speeds of 10-24 followed by 25-39(impact speed) compared to other three speeds.
